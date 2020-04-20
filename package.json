@@ -1,0 +1,26 @@
+{
+  "name": "lightning-pay-queue",
+  "version": "1.0.0",
+  "description": "Send paid invoices to a redis queue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbndg/Lightning-pay-queue.git"
+  },
+  "author": "r32a",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbndg/Lightning-pay-queue/issues"
+  },
+  "homepage": "https://github.com/rbndg/Lightning-pay-queue#readme",
+  "dependencies": {
+    "async": "^3.2.0",
+    "ln-service": "^47.16.0",
+    "rsmq": "^0.12.0",
+    "ws": "^7.2.3"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "lightning":[
+    {
+      "cert": "LND.cert",
+      "macaroon": "LND.macaroon",
+      "socket": "127.0.0.1:1337",
+      "type": "LND"
+    },
+    {
+      "type":"CLN",
+      "node_pub":"Node Public Key of this node",
+      "host":"ws://127.0.0.1:8998"
+    }
+  ],
+  "redis":{
+    "port":"6379"
+  }
+}
