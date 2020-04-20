@@ -10,10 +10,15 @@ qu.init(null, (err) => {
   async.each(config.lightning, (config, next) => {
     const node = new LnNode(config)
     node.on('invoice_updated', (invoice) => {
-      console.log('ADD')
       qu.send(invoice)
     })
     next()
   })
   console.log('Listening to invoices')
+})
+
+process.on('uncaughtException', function (error) {
+  console.log('UNCAUGHT EXCEPTION DETECTED')
+  console.log(error)
+  console.log('Restarting....')
 })

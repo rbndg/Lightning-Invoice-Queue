@@ -20,7 +20,7 @@ class LightningNode extends EventEmitter {
   listenToCLN (config) {
     const ws = new WebSocket(config.host)
 
-    ws.on('message',   (data) => {
+    ws.on('message', (data) => {
       const msg = JSON.parse(data)
       if (msg.invoice_payment) {
         console.log(msg.invoice_payment)
@@ -36,11 +36,17 @@ class LightningNode extends EventEmitter {
   }
 
   listenToLND (config) {
-    const { lnd } = lns.authenticatedLndGrpc({
-      cert: toB64(config.cert),
-      macaroon: toB64(config.macaroon),
-      socket: config.socket
-    })
+    let lnd
+    try {
+      lnd = lns.authenticatedLndGrpc({
+        cert: toB64(config.cert),
+        macaroon: toB64(config.macaroon),
+        socket: config.socket
+      }).lnd
+    } catch (err) {
+      console.log(err)
+      return
+    }
 
     async.waterfall([
       (next) => {
@@ -51,6 +57,7 @@ class LightningNode extends EventEmitter {
       (info, next) => {
         const sub = lns.subscribeToInvoices({ lnd })
         sub.on('invoice_updated', (invoice) => {
+          if (!invoice.is_confirmed) return
           this.emit('invoice_updated', {
             node_pub: info.public_key,
             id: invoice.id
