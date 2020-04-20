@@ -2,7 +2,7 @@
 
 Listen to lightning invoices from multiple LND and C-Lightning nodes and send to a redis queue for processing.
 This is useful if you are managing multiple nodes and want to process the invoice payments.
-This module pushes the `id` and `node_pub` of a paid invoice to a redis queue.
+This module pushes the `id` of the invoice and `node_pub` of a paid invoice to a redis queue.
 
 ## How to run
 
