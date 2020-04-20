@@ -11,7 +11,7 @@ This module pushes the `id` and `node_pub` of a paid invoice to a redis queue.
 3) Update `config.json.example`
 4) `node lightning-invoice.js`
 
-### How to read of queue
+### How to read the queue
 If you use [RSMQ](https://github.com/smrchy/rsmq) (Redis Simple Message Queue)
 
 ```
